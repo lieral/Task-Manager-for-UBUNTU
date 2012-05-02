@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Wed May 2 14:20:16 2012
+** Created: Wed May 2 15:52:46 2012
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -104,12 +104,23 @@ public:
     QGridLayout *gridLayout_2;
     QTreeWidget *filesys_TreeWidgt;
     QWidget *tab_6;
+    QWidget *widget_5;
+    QLabel *label_2;
+    QLabel *label_13;
+    QLabel *label_14;
+    QLabel *label_15;
+    QLabel *label_16;
+    QLabel *label_19;
+    QLabel *label_22;
+    QLabel *label_25;
+    QLabel *label_26;
+    QLabel *label_28;
 
     void setupUi(QWidget *Widget)
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QString::fromUtf8("Widget"));
-        Widget->resize(675, 585);
+        Widget->resize(675, 534);
         Widget->setMaximumSize(QSize(16777215, 16777215));
         gridLayout = new QGridLayout(Widget);
         gridLayout->setSpacing(6);
@@ -282,7 +293,7 @@ public:
 
         frame_3 = new QFrame(tab_4);
         frame_3->setObjectName(QString::fromUtf8("frame_3"));
-        frame_3->setGeometry(QRect(40, 330, 571, 140));
+        frame_3->setGeometry(QRect(40, 310, 571, 140));
         frame_3->setFrameShape(QFrame::StyledPanel);
         frame_3->setFrameShadow(QFrame::Raised);
         gridLayout_7 = new QGridLayout(frame_3);
@@ -347,7 +358,7 @@ public:
 
         frame_2 = new QFrame(tab_4);
         frame_2->setObjectName(QString::fromUtf8("frame_2"));
-        frame_2->setGeometry(QRect(40, 150, 571, 140));
+        frame_2->setGeometry(QRect(40, 140, 571, 140));
         frame_2->setMinimumSize(QSize(0, 0));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
@@ -428,6 +439,39 @@ public:
         tabWidget->addTab(tab_5, QString());
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
+        widget_5 = new QWidget(tab_6);
+        widget_5->setObjectName(QString::fromUtf8("widget_5"));
+        widget_5->setGeometry(QRect(30, 10, 591, 401));
+        label_2 = new QLabel(widget_5);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(70, 66, 61, 20));
+        label_13 = new QLabel(widget_5);
+        label_13->setObjectName(QString::fromUtf8("label_13"));
+        label_13->setGeometry(QRect(70, 120, 61, 16));
+        label_14 = new QLabel(widget_5);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+        label_14->setGeometry(QRect(70, 170, 61, 16));
+        label_15 = new QLabel(widget_5);
+        label_15->setObjectName(QString::fromUtf8("label_15"));
+        label_15->setGeometry(QRect(70, 230, 61, 16));
+        label_16 = new QLabel(widget_5);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+        label_16->setGeometry(QRect(70, 290, 61, 16));
+        label_19 = new QLabel(widget_5);
+        label_19->setObjectName(QString::fromUtf8("label_19"));
+        label_19->setGeometry(QRect(160, 290, 141, 16));
+        label_22 = new QLabel(widget_5);
+        label_22->setObjectName(QString::fromUtf8("label_22"));
+        label_22->setGeometry(QRect(160, 230, 411, 16));
+        label_25 = new QLabel(widget_5);
+        label_25->setObjectName(QString::fromUtf8("label_25"));
+        label_25->setGeometry(QRect(160, 70, 201, 16));
+        label_26 = new QLabel(widget_5);
+        label_26->setObjectName(QString::fromUtf8("label_26"));
+        label_26->setGeometry(QRect(160, 120, 141, 16));
+        label_28 = new QLabel(widget_5);
+        label_28->setObjectName(QString::fromUtf8("label_28"));
+        label_28->setGeometry(QRect(160, 170, 211, 16));
         tabWidget->addTab(tab_6, QString());
 
         gridLayout->addWidget(tabWidget, 0, 0, 1, 1);
@@ -435,7 +479,7 @@ public:
 
         retranslateUi(Widget);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(Widget);
@@ -521,6 +565,16 @@ public:
         ___qtreewidgetitem4->setText(1, QApplication::translate("Widget", "\347\261\273\345\236\213", 0, QApplication::UnicodeUTF8));
         ___qtreewidgetitem4->setText(0, QApplication::translate("Widget", "\347\243\201\347\233\230", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("Widget", "\346\226\207\344\273\266\347\263\273\347\273\237", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("Widget", "\351\241\271\347\233\256\345\220\215\347\247\260", 0, QApplication::UnicodeUTF8));
+        label_13->setText(QApplication::translate("Widget", "\345\260\217\347\273\204\346\210\220\345\221\230", 0, QApplication::UnicodeUTF8));
+        label_14->setText(QApplication::translate("Widget", "\345\274\200\345\217\221\347\216\257\345\242\203", 0, QApplication::UnicodeUTF8));
+        label_15->setText(QApplication::translate("Widget", "\351\241\271\347\233\256\344\270\273\351\241\265", 0, QApplication::UnicodeUTF8));
+        label_16->setText(QApplication::translate("Widget", "\350\201\224\347\263\273\346\226\271\345\274\217", 0, QApplication::UnicodeUTF8));
+        label_19->setText(QApplication::translate("Widget", "QQ545155353", 0, QApplication::UnicodeUTF8));
+        label_22->setText(QApplication::translate("Widget", "https://github.com/liuqiang1357/Task-Manager-for-UBUNTU", 0, QApplication::UnicodeUTF8));
+        label_25->setText(QApplication::translate("Widget", "ubuntu\344\270\213\347\232\204\344\273\273\345\212\241\347\256\241\347\220\206\345\231\250", 0, QApplication::UnicodeUTF8));
+        label_26->setText(QApplication::translate("Widget", "\345\210\230\345\274\272 \346\235\216\346\226\214\346\226\214", 0, QApplication::UnicodeUTF8));
+        label_28->setText(QApplication::translate("Widget", "ubuntu 10.10   Qt 4.7.4", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("Widget", "\350\257\264\346\230\216", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
