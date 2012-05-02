@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widget.h'
 **
-** Created: Wed May 2 00:13:00 2012
+** Created: Wed May 2 14:08:05 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -37,7 +37,7 @@ static const uint qt_meta_data_Widget[] = {
       99,    7,    7,    7, 0x08,
      129,   60,    7,    7, 0x08,
      153,    7,    7,    7, 0x08,
-     183,  171,    7,    7, 0x08,
+     180,  168,    7,    7, 0x08,
 
        0        // eod
 };
@@ -47,7 +47,7 @@ static const char qt_meta_stringdata_Widget[] = {
     "on_reboot_Button_clicked()\0index\0"
     "on_tabWidget_currentChanged(int)\0"
     "timer_update_currentTabInfo()\0"
-    "show_tabWidgetInfo(int)\0df_back_message()\0"
+    "show_tabWidgetInfo(int)\0back_message()\0"
     "item,column\0"
     "on_filesys_TreeWidgt_itemDoubleClicked(QTreeWidgetItem*,int)\0"
 };
@@ -63,7 +63,7 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 2: _t->on_tabWidget_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: _t->timer_update_currentTabInfo(); break;
         case 4: _t->show_tabWidgetInfo((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 5: _t->df_back_message(); break;
+        case 5: _t->back_message(); break;
         case 6: _t->on_filesys_TreeWidgt_itemDoubleClicked((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }

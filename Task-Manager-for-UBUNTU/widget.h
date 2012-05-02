@@ -28,14 +28,14 @@ private slots:
 
     void show_tabWidgetInfo(int index);
 
-    void df_back_message();
+    void back_message();
 
     void on_filesys_TreeWidgt_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
 private:
     Ui::Widget *ui;
     QTimer *timer;
-    QProcess *dfProcess;
+    QProcess *Process;
 };
 
 #endif // WIDGET_H

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Wed May 2 13:18:15 2012
+** Created: Wed May 2 14:20:16 2012
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -282,7 +282,7 @@ public:
 
         frame_3 = new QFrame(tab_4);
         frame_3->setObjectName(QString::fromUtf8("frame_3"));
-        frame_3->setGeometry(QRect(40, 150, 571, 140));
+        frame_3->setGeometry(QRect(40, 330, 571, 140));
         frame_3->setFrameShape(QFrame::StyledPanel);
         frame_3->setFrameShadow(QFrame::Raised);
         gridLayout_7 = new QGridLayout(frame_3);
@@ -347,7 +347,7 @@ public:
 
         frame_2 = new QFrame(tab_4);
         frame_2->setObjectName(QString::fromUtf8("frame_2"));
-        frame_2->setGeometry(QRect(40, 320, 571, 140));
+        frame_2->setGeometry(QRect(40, 150, 571, 140));
         frame_2->setMinimumSize(QSize(0, 0));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
@@ -421,7 +421,7 @@ public:
         filesys_TreeWidgt = new QTreeWidget(tab_5);
         filesys_TreeWidgt->setObjectName(QString::fromUtf8("filesys_TreeWidgt"));
         filesys_TreeWidgt->setSortingEnabled(true);
-        filesys_TreeWidgt->header()->setProperty("showSortIndicator", QVariant(false));
+        filesys_TreeWidgt->header()->setProperty("showSortIndicator", QVariant(true));
 
         gridLayout_2->addWidget(filesys_TreeWidgt, 0, 0, 1, 1);
 
@@ -435,7 +435,7 @@ public:
 
         retranslateUi(Widget);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Widget);

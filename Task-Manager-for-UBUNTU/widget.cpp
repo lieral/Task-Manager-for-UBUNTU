@@ -2,11 +2,7 @@
 #include "ui_widget.h"
 #include<QtGui>
 
-int a0 = 0, a1 = 0, b0 = 0, b1 = 0;
-
-
-
-
+int a0 = 0, a1 = 0, b0 = 0, b1 = 0;//统计cpu使用率时使用的全局变量
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -14,12 +10,10 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
     timer = new QTimer(this);
-
-    QWidget::connect( timer, SIGNAL( timeout() ), this, SLOT( timer_update_currentTabInfo() ) );
-
     timer->start(100);
-    dfProcess=new QProcess(this);
-   connect(dfProcess,SIGNAL(readyReadStandardOutput()),this,SLOT(df_back_message()));
+    QWidget::connect( timer, SIGNAL( timeout() ), this, SLOT( timer_update_currentTabInfo() ) );
+    Process=new QProcess(this);
+    connect(Process,SIGNAL(readyReadStandardOutput()),this,SLOT(back_message()));
 }
 
 Widget::~Widget()
@@ -71,8 +65,8 @@ void Widget::show_tabWidgetInfo(int index)
     else if(index==3)
     {
         //资源
-timer->stop();
-timer->start(1000);
+        timer->stop();
+        timer->start(1000);//刷新频率
 
         //读取存储信息文件计算内存使用率和交换空间使用率
         tempFile.setFileName("/proc/meminfo"); //打开内存信息文件
@@ -130,26 +124,26 @@ timer->start(1000);
                 break;
             }
         }
-        nMemFree=nMemFree+nCached+nBuffers;
-        nMemUsed = nMemTotal - nMemFree;
-        nSwapUsed = nSwapTotal - nSwapFree;
+        nMemFree=nMemFree+nCached+nBuffers;//空闲=memfree+cached+buffers
+        nMemUsed = nMemTotal - nMemFree;//计算已用ram
+        nSwapUsed = nSwapTotal - nSwapFree;//计算已用swap
 
-               memUsed = QString::number(nMemUsed, 10);
-               swapUsed = QString::number(nSwapUsed, 10);
-               memFree = QString::number(nMemFree, 10);
-               memTotal = QString::number(nMemTotal, 10);
-               swapFree = QString::number(nSwapFree, 10);
-               swapTotal = QString::number(nSwapTotal, 10);
+        memUsed = QString::number(nMemUsed, 10);
+        swapUsed = QString::number(nSwapUsed, 10);
+        memFree = QString::number(nMemFree, 10);
+        memTotal = QString::number(nMemTotal, 10);
+        swapFree = QString::number(nSwapFree, 10);
+        swapTotal = QString::number(nSwapTotal, 10);
 
-               ui->label_RAM_Used->setText(memUsed+" MB");
-               ui->label_RAM_Left->setText(memFree+" MB");
-               ui->label_RAM_Total->setText(memTotal+" MB");
-               ui->label_SWAP_Used->setText(swapUsed+" MB");
-               ui->label_SWAP_Left->setText(swapFree+" MB");
-               ui->label_SWAP_Total->setText(swapTotal+" MB");
+        ui->label_RAM_Used->setText(memUsed+" MB");
+        ui->label_RAM_Left->setText(memFree+" MB");
+        ui->label_RAM_Total->setText(memTotal+" MB");
+        ui->label_SWAP_Used->setText(swapUsed+" MB");
+        ui->label_SWAP_Left->setText(swapFree+" MB");
+        ui->label_SWAP_Total->setText(swapTotal+" MB");
 
         ui->ram_ProgressBar->setValue(nMemUsed*100/nMemTotal);
-        if (nSwapTotal==0)
+        if (nSwapTotal==0)//考虑没有交换分区的情况
             ui->swap_ProgressBar->setValue(0);
         else
             ui->swap_ProgressBar->setValue(nSwapUsed*100/nSwapTotal);
@@ -199,12 +193,13 @@ timer->start(1000);
     {
         //文件系统
         timer->stop();
-        timer->start(5000);
+        timer->start(5000);//刷新频率
 
-        QString dfPath="/bin/df";
-          QStringList args;
-          args<<"-lhT";
-          dfProcess->start(dfPath,args);
+        //调用df程序读取磁盘信息
+        QString Path="/bin/df";
+        QStringList args;
+        args<<"-lhT";
+        Process->start(Path,args);
 
     }
     else
@@ -217,55 +212,55 @@ timer->start(1000);
 
 
 
-void Widget::df_back_message()
+void Widget::back_message()
 {
-    QTreeWidgetItem *cur=ui->filesys_TreeWidgt->currentItem();
+    //df的返回信息处理
+    QTreeWidgetItem *cur=ui->filesys_TreeWidgt->currentItem();//记录当前item
     QString curr="\0";
     if (cur!=NULL)
-    curr=cur->text(0);
+        curr=cur->text(0);
 
-ui->filesys_TreeWidgt->clear();
-//
+    ui->filesys_TreeWidgt->clear();
+    //
 
-    while(dfProcess->canReadLine())
+    while(Process->canReadLine())//df的行
     {
         QString message_list1[10];
         int j;
-        QString message(dfProcess->readLine());
-       QStringList  message_list = message.split(" ");
+        QString message(Process->readLine());
+        QStringList  message_list = message.split(" ");//按空格分离
         j=0;
 
-        for (int i=0;i<message_list.count();i++)
+        for (int i=0;i<message_list.count();i++)//抽出有用的项
             if (message_list[i]!="\0" )
             {
-             if (j!=6)
-             {
-                 message_list1[j]=message_list[i];
-                 j++;
-              }
-               else
-             {
-                   message_list1[j]=message_list1[j]+" "+message_list[i];
-
-             }
+                if (j!=6)  //每行只有7项
+                {
+                    message_list1[j]=message_list[i];
+                    j++;
+                }
+                else
+                {
+                    message_list1[j]=message_list1[j]+" "+message_list[i];//找回空格
+                }
             }
         message_list1[6]=message_list1[6].remove("\n");
 
-        if (message_list1[0].indexOf("/dev")!=-1)
+        if (message_list1[0].indexOf("/dev")!=-1)//填表
         {
-        QTreeWidgetItem *item=new QTreeWidgetItem(ui->filesys_TreeWidgt);
-        item->setText(0,message_list1[0]);
-        item->setText(1,message_list1[1]);
-        item->setText(2,message_list1[2]);
-        item->setText(3,message_list1[3]);
-        item->setText(4,message_list1[4]);
-        item->setText(5,message_list1[6]);
+            QTreeWidgetItem *item=new QTreeWidgetItem(ui->filesys_TreeWidgt);
+            item->setText(0,message_list1[0]);
+            item->setText(1,message_list1[1]);
+            item->setText(2,message_list1[2]);
+            item->setText(3,message_list1[3]);
+            item->setText(4,message_list1[4]);
+            item->setText(5,message_list1[6]);
 
-       }
+        }
     }
 
     if(curr!="\0")
-    ui->filesys_TreeWidgt->setCurrentItem(ui->filesys_TreeWidgt->findItems(curr,Qt::MatchExactly,0)[0]);
+        ui->filesys_TreeWidgt->setCurrentItem(ui->filesys_TreeWidgt->findItems(curr,Qt::MatchExactly,0)[0]);//选中保存的item
 
 }
 
@@ -273,6 +268,7 @@ ui->filesys_TreeWidgt->clear();
 
 void Widget::on_filesys_TreeWidgt_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
+    //双击filesys表项打开对应的磁盘
     QString open="/usr/bin/nautilus"+item->text(5);
     system(open.toUtf8());
 }
