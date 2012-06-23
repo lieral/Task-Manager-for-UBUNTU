@@ -29,7 +29,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_1">
       <attribute name="title">
@@ -43,7 +43,7 @@
            <rect>
             <x>30</x>
             <y>260</y>
-            <width>541</width>
+            <width>571</width>
             <height>171</height>
            </rect>
           </property>
@@ -63,7 +63,7 @@
           <widget class="QLabel" name="label_9">
            <property name="geometry">
             <rect>
-             <x>120</x>
+             <x>100</x>
              <y>30</y>
              <width>61</width>
              <height>20</height>
@@ -73,12 +73,12 @@
             <string>处理器</string>
            </property>
           </widget>
-          <widget class="QLabel" name="cpu_Label">
+          <widget class="QLabel" name="CPU_Label">
            <property name="geometry">
             <rect>
-             <x>260</x>
+             <x>200</x>
              <y>30</y>
-             <width>301</width>
+             <width>351</width>
              <height>16</height>
             </rect>
            </property>
@@ -89,21 +89,21 @@
           <widget class="QLabel" name="label_11">
            <property name="geometry">
             <rect>
-             <x>120</x>
-             <y>110</y>
+             <x>100</x>
+             <y>100</y>
              <width>61</width>
              <height>31</height>
             </rect>
            </property>
            <property name="text">
-            <string>硬盘容量</string>
+            <string>CPU频率</string>
            </property>
           </widget>
-          <widget class="QLabel" name="harddisk_Label">
+          <widget class="QLabel" name="CPUFrequency_Label">
            <property name="geometry">
             <rect>
              <x>260</x>
-             <y>120</y>
+             <y>110</y>
              <width>221</width>
              <height>16</height>
             </rect>
@@ -133,14 +133,14 @@
           <widget class="QLabel" name="label_10">
            <property name="geometry">
             <rect>
-             <x>120</x>
+             <x>100</x>
              <y>70</y>
              <width>61</width>
              <height>16</height>
             </rect>
            </property>
            <property name="text">
-            <string>内存容量</string>
+            <string>CPU类型</string>
            </property>
           </widget>
          </widget>
@@ -149,7 +149,7 @@
            <rect>
             <x>30</x>
             <y>10</y>
-            <width>541</width>
+            <width>571</width>
             <height>71</height>
            </rect>
           </property>
@@ -203,7 +203,7 @@
            <rect>
             <x>30</x>
             <y>90</y>
-            <width>541</width>
+            <width>571</width>
             <height>161</height>
            </rect>
           </property>
@@ -212,12 +212,12 @@
             <rect>
              <x>120</x>
              <y>110</y>
-             <width>61</width>
+             <width>71</width>
              <height>16</height>
             </rect>
            </property>
            <property name="text">
-            <string>窗口系统</string>
+            <string>GCC编译器</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_5">
@@ -277,7 +277,7 @@
             <string>TextLabel</string>
            </property>
           </widget>
-          <widget class="QLabel" name="windowsys_Label">
+          <widget class="QLabel" name="gcc_Label">
            <property name="geometry">
             <rect>
              <x>260</x>
@@ -355,28 +355,23 @@
         </widget>
        </item>
        <item row="1" column="0" colspan="3">
-        <widget class="QTreeWidget" name="process_TreeWidgt">
+        <widget class="QTreeWidget" name="listWidget_process">
          <attribute name="headerShowSortIndicator" stdset="0">
           <bool>false</bool>
          </attribute>
          <column>
           <property name="text">
-           <string>进程名</string>
+           <string>PID</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>pid</string>
+           <string>名称</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>%CPU</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>内存</string>
+           <string>状态</string>
           </property>
          </column>
          <column>
@@ -386,29 +381,9 @@
          </column>
          <column>
           <property name="text">
-           <string>队列</string>
+           <string>占用内存</string>
           </property>
          </column>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </item>
         </widget>
        </item>
        <item row="2" column="1">
@@ -425,7 +400,7 @@
         </spacer>
        </item>
        <item row="2" column="2">
-        <widget class="QPushButton" name="pkill_Button">
+        <widget class="QPushButton" name="pkill">
          <property name="text">
           <string>结束进程</string>
          </property>

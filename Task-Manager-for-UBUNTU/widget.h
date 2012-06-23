@@ -30,12 +30,17 @@ private slots:
 
     void back_message();
 
+    void back_message1();
+
     void on_filesys_TreeWidgt_itemDoubleClicked(QTreeWidgetItem *item, int column);
+
+    void on_pkill_clicked();
 
 private:
     Ui::Widget *ui;
     QTimer *timer;
     QProcess *Process;
+    QProcess *Process1;
 };
 
 #endif // WIDGET_H

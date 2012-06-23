@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Wed May 2 15:52:46 2012
+** Created: Fri Jun 22 16:07:10 2012
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -39,9 +39,9 @@ public:
     QWidget *widget_3;
     QLabel *ram_Label;
     QLabel *label_9;
-    QLabel *cpu_Label;
+    QLabel *CPU_Label;
     QLabel *label_11;
-    QLabel *harddisk_Label;
+    QLabel *CPUFrequency_Label;
     QLabel *label_4;
     QLabel *label_10;
     QWidget *widget_2;
@@ -54,7 +54,7 @@ public:
     QLabel *kernel_Label;
     QLabel *label_3;
     QLabel *version_Label;
-    QLabel *windowsys_Label;
+    QLabel *gcc_Label;
     QLabel *label_6;
     QSpacerItem *horizontalSpacer_6;
     QPushButton *halt_Button;
@@ -63,9 +63,9 @@ public:
     QGridLayout *gridLayout_3;
     QLabel *label_24;
     QLabel *cpuaverage_Label;
-    QTreeWidget *process_TreeWidgt;
+    QTreeWidget *listWidget_process;
     QSpacerItem *horizontalSpacer_5;
-    QPushButton *pkill_Button;
+    QPushButton *pkill;
     QWidget *tab_3;
     QGridLayout *gridLayout_4;
     QTreeWidget *network_TreeWidgt;
@@ -139,22 +139,22 @@ public:
         widget->setObjectName(QString::fromUtf8("widget"));
         widget_3 = new QWidget(widget);
         widget_3->setObjectName(QString::fromUtf8("widget_3"));
-        widget_3->setGeometry(QRect(30, 260, 541, 171));
+        widget_3->setGeometry(QRect(30, 260, 571, 171));
         ram_Label = new QLabel(widget_3);
         ram_Label->setObjectName(QString::fromUtf8("ram_Label"));
         ram_Label->setGeometry(QRect(260, 70, 231, 16));
         label_9 = new QLabel(widget_3);
         label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setGeometry(QRect(120, 30, 61, 20));
-        cpu_Label = new QLabel(widget_3);
-        cpu_Label->setObjectName(QString::fromUtf8("cpu_Label"));
-        cpu_Label->setGeometry(QRect(260, 30, 301, 16));
+        label_9->setGeometry(QRect(100, 30, 61, 20));
+        CPU_Label = new QLabel(widget_3);
+        CPU_Label->setObjectName(QString::fromUtf8("CPU_Label"));
+        CPU_Label->setGeometry(QRect(200, 30, 351, 16));
         label_11 = new QLabel(widget_3);
         label_11->setObjectName(QString::fromUtf8("label_11"));
-        label_11->setGeometry(QRect(120, 110, 61, 31));
-        harddisk_Label = new QLabel(widget_3);
-        harddisk_Label->setObjectName(QString::fromUtf8("harddisk_Label"));
-        harddisk_Label->setGeometry(QRect(260, 120, 221, 16));
+        label_11->setGeometry(QRect(100, 100, 61, 31));
+        CPUFrequency_Label = new QLabel(widget_3);
+        CPUFrequency_Label->setObjectName(QString::fromUtf8("CPUFrequency_Label"));
+        CPUFrequency_Label->setGeometry(QRect(260, 110, 221, 16));
         label_4 = new QLabel(widget_3);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setGeometry(QRect(10, 20, 61, 32));
@@ -163,10 +163,10 @@ public:
         label_4->setFont(font);
         label_10 = new QLabel(widget_3);
         label_10->setObjectName(QString::fromUtf8("label_10"));
-        label_10->setGeometry(QRect(120, 70, 61, 16));
+        label_10->setGeometry(QRect(100, 70, 61, 16));
         widget_2 = new QWidget(widget);
         widget_2->setObjectName(QString::fromUtf8("widget_2"));
-        widget_2->setGeometry(QRect(30, 10, 541, 71));
+        widget_2->setGeometry(QRect(30, 10, 571, 71));
         label_8 = new QLabel(widget_2);
         label_8->setObjectName(QString::fromUtf8("label_8"));
         label_8->setGeometry(QRect(120, 30, 61, 16));
@@ -179,10 +179,10 @@ public:
         label->setFont(font);
         widget_4 = new QWidget(widget);
         widget_4->setObjectName(QString::fromUtf8("widget_4"));
-        widget_4->setGeometry(QRect(30, 90, 541, 161));
+        widget_4->setGeometry(QRect(30, 90, 571, 161));
         label_7 = new QLabel(widget_4);
         label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(120, 110, 61, 16));
+        label_7->setGeometry(QRect(120, 110, 71, 16));
         label_5 = new QLabel(widget_4);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(120, 30, 61, 16));
@@ -196,9 +196,9 @@ public:
         version_Label = new QLabel(widget_4);
         version_Label->setObjectName(QString::fromUtf8("version_Label"));
         version_Label->setGeometry(QRect(260, 30, 181, 16));
-        windowsys_Label = new QLabel(widget_4);
-        windowsys_Label->setObjectName(QString::fromUtf8("windowsys_Label"));
-        windowsys_Label->setGeometry(QRect(260, 110, 171, 16));
+        gcc_Label = new QLabel(widget_4);
+        gcc_Label->setObjectName(QString::fromUtf8("gcc_Label"));
+        gcc_Label->setGeometry(QRect(260, 110, 171, 16));
         label_6 = new QLabel(widget_4);
         label_6->setObjectName(QString::fromUtf8("label_6"));
         label_6->setGeometry(QRect(120, 70, 61, 16));
@@ -236,21 +236,20 @@ public:
 
         gridLayout_3->addWidget(cpuaverage_Label, 0, 1, 1, 2);
 
-        process_TreeWidgt = new QTreeWidget(tab_2);
-        new QTreeWidgetItem(process_TreeWidgt);
-        process_TreeWidgt->setObjectName(QString::fromUtf8("process_TreeWidgt"));
-        process_TreeWidgt->header()->setProperty("showSortIndicator", QVariant(false));
+        listWidget_process = new QTreeWidget(tab_2);
+        listWidget_process->setObjectName(QString::fromUtf8("listWidget_process"));
+        listWidget_process->header()->setProperty("showSortIndicator", QVariant(false));
 
-        gridLayout_3->addWidget(process_TreeWidgt, 1, 0, 1, 3);
+        gridLayout_3->addWidget(listWidget_process, 1, 0, 1, 3);
 
         horizontalSpacer_5 = new QSpacerItem(288, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout_3->addItem(horizontalSpacer_5, 2, 1, 1, 1);
 
-        pkill_Button = new QPushButton(tab_2);
-        pkill_Button->setObjectName(QString::fromUtf8("pkill_Button"));
+        pkill = new QPushButton(tab_2);
+        pkill->setObjectName(QString::fromUtf8("pkill"));
 
-        gridLayout_3->addWidget(pkill_Button, 2, 2, 1, 1);
+        gridLayout_3->addWidget(pkill, 2, 2, 1, 1);
 
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
@@ -471,7 +470,7 @@ public:
         label_26->setGeometry(QRect(160, 120, 141, 16));
         label_28 = new QLabel(widget_5);
         label_28->setObjectName(QString::fromUtf8("label_28"));
-        label_28->setGeometry(QRect(160, 170, 211, 16));
+        label_28->setGeometry(QRect(160, 170, 281, 16));
         tabWidget->addTab(tab_6, QString());
 
         gridLayout->addWidget(tabWidget, 0, 0, 1, 1);
@@ -479,7 +478,7 @@ public:
 
         retranslateUi(Widget);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(Widget);
@@ -490,55 +489,47 @@ public:
         Widget->setWindowTitle(QApplication::translate("Widget", "\344\273\273\345\212\241\347\256\241\347\220\206\345\231\250", 0, QApplication::UnicodeUTF8));
         ram_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
         label_9->setText(QApplication::translate("Widget", "\345\244\204\347\220\206\345\231\250", 0, QApplication::UnicodeUTF8));
-        cpu_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
-        label_11->setText(QApplication::translate("Widget", "\347\241\254\347\233\230\345\256\271\351\207\217", 0, QApplication::UnicodeUTF8));
-        harddisk_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
+        CPU_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
+        label_11->setText(QApplication::translate("Widget", "CPU\351\242\221\347\216\207", 0, QApplication::UnicodeUTF8));
+        CPUFrequency_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("Widget", "\347\241\254\344\273\266", 0, QApplication::UnicodeUTF8));
-        label_10->setText(QApplication::translate("Widget", "\345\206\205\345\255\230\345\256\271\351\207\217", 0, QApplication::UnicodeUTF8));
+        label_10->setText(QApplication::translate("Widget", "CPU\347\261\273\345\236\213", 0, QApplication::UnicodeUTF8));
         label_8->setText(QApplication::translate("Widget", "\347\224\250\346\210\267\345\220\215", 0, QApplication::UnicodeUTF8));
         username_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("Widget", "\347\224\250\346\210\267", 0, QApplication::UnicodeUTF8));
-        label_7->setText(QApplication::translate("Widget", "\347\252\227\345\217\243\347\263\273\347\273\237", 0, QApplication::UnicodeUTF8));
+        label_7->setText(QApplication::translate("Widget", "GCC\347\274\226\350\257\221\345\231\250", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("Widget", "\347\211\210\346\234\254", 0, QApplication::UnicodeUTF8));
         kernel_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("Widget", "\347\263\273\347\273\237", 0, QApplication::UnicodeUTF8));
         version_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
-        windowsys_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
+        gcc_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("Widget", "\345\206\205\346\240\270", 0, QApplication::UnicodeUTF8));
         halt_Button->setText(QApplication::translate("Widget", "\345\205\263\346\234\272", 0, QApplication::UnicodeUTF8));
         reboot_Button->setText(QApplication::translate("Widget", "\351\207\215\345\220\257", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_1), QApplication::translate("Widget", "\347\263\273\347\273\237", 0, QApplication::UnicodeUTF8));
         label_24->setText(QApplication::translate("Widget", "\345\211\215\344\270\200\345\210\206\351\222\237\357\274\214\344\272\224\345\210\206\351\222\237\357\274\214\345\215\201\344\272\224\345\210\206\351\222\237\347\232\204\345\271\263\345\261\200\350\264\237\350\275\275\344\270\272", 0, QApplication::UnicodeUTF8));
         cpuaverage_Label->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
-        QTreeWidgetItem *___qtreewidgetitem = process_TreeWidgt->headerItem();
-        ___qtreewidgetitem->setText(5, QApplication::translate("Widget", "\351\230\237\345\210\227", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem->setText(4, QApplication::translate("Widget", "\344\274\230\345\205\210\347\272\247", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem->setText(3, QApplication::translate("Widget", "\345\206\205\345\255\230", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem->setText(2, QApplication::translate("Widget", "%CPU", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem->setText(1, QApplication::translate("Widget", "pid", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem->setText(0, QApplication::translate("Widget", "\350\277\233\347\250\213\345\220\215", 0, QApplication::UnicodeUTF8));
-
-        const bool __sortingEnabled = process_TreeWidgt->isSortingEnabled();
-        process_TreeWidgt->setSortingEnabled(false);
-        QTreeWidgetItem *___qtreewidgetitem1 = process_TreeWidgt->topLevelItem(0);
-        ___qtreewidgetitem1->setText(0, QApplication::translate("Widget", "\346\226\260\345\273\272\351\241\271\347\233\256", 0, QApplication::UnicodeUTF8));
-        process_TreeWidgt->setSortingEnabled(__sortingEnabled);
-
-        pkill_Button->setText(QApplication::translate("Widget", "\347\273\223\346\235\237\350\277\233\347\250\213", 0, QApplication::UnicodeUTF8));
+        QTreeWidgetItem *___qtreewidgetitem = listWidget_process->headerItem();
+        ___qtreewidgetitem->setText(4, QApplication::translate("Widget", "\345\215\240\347\224\250\345\206\205\345\255\230", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem->setText(3, QApplication::translate("Widget", "\344\274\230\345\205\210\347\272\247", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem->setText(2, QApplication::translate("Widget", "\347\212\266\346\200\201", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem->setText(1, QApplication::translate("Widget", "\345\220\215\347\247\260", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem->setText(0, QApplication::translate("Widget", "PID", 0, QApplication::UnicodeUTF8));
+        pkill->setText(QApplication::translate("Widget", "\347\273\223\346\235\237\350\277\233\347\250\213", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("Widget", "\350\277\233\347\250\213", 0, QApplication::UnicodeUTF8));
-        QTreeWidgetItem *___qtreewidgetitem2 = network_TreeWidgt->headerItem();
-        ___qtreewidgetitem2->setText(5, QApplication::translate("Widget", "\344\270\213\350\275\275\351\207\217", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem2->setText(4, QApplication::translate("Widget", "\344\270\212\344\274\240\351\207\217", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem2->setText(3, QApplication::translate("Widget", "\344\270\213\350\275\275\351\200\237\347\216\207", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem2->setText(2, QApplication::translate("Widget", "\344\270\212\344\274\240\351\200\237\347\216\207", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem2->setText(1, QApplication::translate("Widget", "pid", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem2->setText(0, QApplication::translate("Widget", "\350\277\233\347\250\213", 0, QApplication::UnicodeUTF8));
+        QTreeWidgetItem *___qtreewidgetitem1 = network_TreeWidgt->headerItem();
+        ___qtreewidgetitem1->setText(5, QApplication::translate("Widget", "\344\270\213\350\275\275\351\207\217", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem1->setText(4, QApplication::translate("Widget", "\344\270\212\344\274\240\351\207\217", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem1->setText(3, QApplication::translate("Widget", "\344\270\213\350\275\275\351\200\237\347\216\207", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem1->setText(2, QApplication::translate("Widget", "\344\270\212\344\274\240\351\200\237\347\216\207", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem1->setText(1, QApplication::translate("Widget", "pid", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem1->setText(0, QApplication::translate("Widget", "\350\277\233\347\250\213", 0, QApplication::UnicodeUTF8));
 
-        const bool __sortingEnabled1 = network_TreeWidgt->isSortingEnabled();
+        const bool __sortingEnabled = network_TreeWidgt->isSortingEnabled();
         network_TreeWidgt->setSortingEnabled(false);
-        QTreeWidgetItem *___qtreewidgetitem3 = network_TreeWidgt->topLevelItem(0);
-        ___qtreewidgetitem3->setText(0, QApplication::translate("Widget", "\346\226\260\345\273\272\351\241\271\347\233\256", 0, QApplication::UnicodeUTF8));
-        network_TreeWidgt->setSortingEnabled(__sortingEnabled1);
+        QTreeWidgetItem *___qtreewidgetitem2 = network_TreeWidgt->topLevelItem(0);
+        ___qtreewidgetitem2->setText(0, QApplication::translate("Widget", "\346\226\260\345\273\272\351\241\271\347\233\256", 0, QApplication::UnicodeUTF8));
+        network_TreeWidgt->setSortingEnabled(__sortingEnabled);
 
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("Widget", "\347\275\221\347\273\234", 0, QApplication::UnicodeUTF8));
         label_12->setText(QApplication::translate("Widget", "CPU", 0, QApplication::UnicodeUTF8));
@@ -557,13 +548,13 @@ public:
         label_31->setText(QApplication::translate("Widget", "\345\217\257\347\224\250", 0, QApplication::UnicodeUTF8));
         label_RAM_Left->setText(QApplication::translate("Widget", "TextLabel", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("Widget", "\350\265\204\346\272\220", 0, QApplication::UnicodeUTF8));
-        QTreeWidgetItem *___qtreewidgetitem4 = filesys_TreeWidgt->headerItem();
-        ___qtreewidgetitem4->setText(5, QApplication::translate("Widget", "\350\267\257\345\276\204", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem4->setText(4, QApplication::translate("Widget", "\345\211\251\344\275\231", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem4->setText(3, QApplication::translate("Widget", "\345\267\262\347\224\250", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem4->setText(2, QApplication::translate("Widget", "\345\256\271\351\207\217", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem4->setText(1, QApplication::translate("Widget", "\347\261\273\345\236\213", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem4->setText(0, QApplication::translate("Widget", "\347\243\201\347\233\230", 0, QApplication::UnicodeUTF8));
+        QTreeWidgetItem *___qtreewidgetitem3 = filesys_TreeWidgt->headerItem();
+        ___qtreewidgetitem3->setText(5, QApplication::translate("Widget", "\350\267\257\345\276\204", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem3->setText(4, QApplication::translate("Widget", "\345\211\251\344\275\231", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem3->setText(3, QApplication::translate("Widget", "\345\267\262\347\224\250", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem3->setText(2, QApplication::translate("Widget", "\345\256\271\351\207\217", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem3->setText(1, QApplication::translate("Widget", "\347\261\273\345\236\213", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem3->setText(0, QApplication::translate("Widget", "\347\243\201\347\233\230", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("Widget", "\346\226\207\344\273\266\347\263\273\347\273\237", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("Widget", "\351\241\271\347\233\256\345\220\215\347\247\260", 0, QApplication::UnicodeUTF8));
         label_13->setText(QApplication::translate("Widget", "\345\260\217\347\273\204\346\210\220\345\221\230", 0, QApplication::UnicodeUTF8));
@@ -574,7 +565,7 @@ public:
         label_22->setText(QApplication::translate("Widget", "https://github.com/liuqiang1357/Task-Manager-for-UBUNTU", 0, QApplication::UnicodeUTF8));
         label_25->setText(QApplication::translate("Widget", "ubuntu\344\270\213\347\232\204\344\273\273\345\212\241\347\256\241\347\220\206\345\231\250", 0, QApplication::UnicodeUTF8));
         label_26->setText(QApplication::translate("Widget", "\345\210\230\345\274\272 \346\235\216\346\226\214\346\226\214", 0, QApplication::UnicodeUTF8));
-        label_28->setText(QApplication::translate("Widget", "ubuntu 10.10   Qt 4.7.4", 0, QApplication::UnicodeUTF8));
+        label_28->setText(QApplication::translate("Widget", "ubuntu 10.10    Qt 4.7.4    Qtcreator 2.4.1", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("Widget", "\350\257\264\346\230\216", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

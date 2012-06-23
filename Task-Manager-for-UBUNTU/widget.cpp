@@ -1,8 +1,10 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include<QtGui>
+#include <QListWidgetItem>
 
 int a0 = 0, a1 = 0, b0 = 0, b1 = 0;//统计cpu使用率时使用的全局变量
+
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -13,6 +15,8 @@ Widget::Widget(QWidget *parent) :
     timer->start(100);
     QWidget::connect( timer, SIGNAL( timeout() ), this, SLOT( timer_update_currentTabInfo() ) );
     Process=new QProcess(this);
+    Process1=new QProcess(this);
+    connect(Process1,SIGNAL(readyReadStandardOutput()),this,SLOT(back_message1()));
     connect(Process,SIGNAL(readyReadStandardOutput()),this,SLOT(back_message()));
 }
 
@@ -52,11 +56,144 @@ void Widget::show_tabWidgetInfo(int index)
 
     if (index==0)
     {
+        //yonghum
+        QString Path="/usr/bin/whoami";
+      //  QStringList args;
+        //args<<" ";
+        Process1->start(Path);
         //系统
+                tempFile.setFileName("/proc/cpuinfo"); //打开CPU信息文件
+                if ( !tempFile.open(QIODevice::ReadOnly) )
+                {
+                    QMessageBox::warning(this, tr("warning"), tr("The cpuinfo file can not open!"), QMessageBox::Yes);
+                    return;
+                }
+                while(1){
+                    tempStr = tempFile.readLine();
+                    pos = tempStr.indexOf("model name");
+                    if(pos!=-1){
+                    pos += 13; //跳过前面的"model name："所占用的字符
+                    QString *cpu_name = new QString( tempStr.mid(pos, tempStr.length()-13) );
+                    ui->CPU_Label->setText(*cpu_name);
+                    }else if (pos = tempStr.indexOf("vendor_id"), pos != -1)
+                    {
+                        pos += 12; //跳过前面的"vendor_id："所占用的字符
+                        QString *cpu_type = new QString( tempStr.mid(pos, tempStr.length()-12) );
+                        ui->ram_Label->setText(*cpu_type);
+                    }
+                    pos = tempStr.indexOf("cpu MHz");
+                    if(pos!=-1){
+                    pos += 11; //跳过前面的"cpu MHz："所占用的字符
+                    QString *cpu_frq = new QString( tempStr.mid(pos, tempStr.length()-11) );
+                    double cpufrq = cpu_frq->toDouble(); //4核CPU
+                    cpu_frq->setNum(cpufrq*4);
+                    ui->CPUFrequency_Label->setText(*cpu_frq + " HZ");
+                    break;
+                    }
+                }
+                tempFile.close(); //关闭CPU信息文件
+
+                //打开操作系统信息文件
+                tempFile.setFileName("/proc/version");
+                if ( !tempFile.open(QIODevice::ReadOnly) )
+                {
+                    QMessageBox::warning(this, tr("warning"), tr("The version file can not open!"), QMessageBox::Yes);
+                    return ;
+                }
+                tempStr = tempFile.readLine();
+                pos = tempStr.indexOf("version");
+                QString *os_version = new QString( tempStr.mid(0, pos-1) );
+                ui->kernel_Label->setText(*os_version);
+
+                int pos1 = tempStr.indexOf("(");
+                QString *os_type = new QString( tempStr.mid(pos, pos1-pos-1) );
+                ui->version_Label->setText(*os_type);
+
+                pos = tempStr.indexOf("gcc version");
+                pos1 = tempStr.indexOf("#");
+                QString *gcc_info = new QString( tempStr.mid(pos+12, pos1-pos-14) );
+                ui->gcc_Label->setText(*gcc_info);
+
+                tempFile.close(); //关闭操作系统信息文件
     }
     else if (index==1)
     {
         //进程
+        timer->stop();
+        timer->start(1000);//刷新频率
+
+        QTreeWidgetItem *cur=ui->listWidget_process->currentItem();//记录当前item
+        QString curr="\0";
+        if (cur!=NULL)
+            curr=cur->text(0);
+
+        ui->listWidget_process->clear();
+        QDir qd("/proc");
+        QStringList qsList = qd.entryList();
+        QString qs = qsList.join("\n");
+        QString id_of_pro;
+        bool ok;
+        int find_start = 3;
+        int a, b;
+        int nProPid; //进程PID
+        int totalProNum = 0; //进程总数
+        QString proName; //进程名
+        QString proState; //进程状态
+        QString proPri; //进程优先级
+        QString proMem; //进程占用内存
+        //循环读取进程
+        while (1)
+        {
+            //获取进程PID
+            a = qs.indexOf("\n", find_start);
+            b = qs.indexOf("\n", a+1);
+            find_start = b;
+            id_of_pro = qs.mid(a+1, b-a-1);
+            totalProNum++;
+            nProPid = id_of_pro.toInt(&ok, 10);
+            if(!ok)
+            {
+                break;
+            }
+
+            //打开PID所对应的进程状态文件
+            tempFile.setFileName("/proc/" + id_of_pro + "/stat");
+            if ( !tempFile.open(QIODevice::ReadOnly) )
+            {
+                QMessageBox::warning(this, tr("warning"), tr("The pid stat file can not open!"), QMessageBox::Yes);
+                return;
+            }
+            tempStr = tempFile.readLine();
+            if (tempStr.length() == 0)
+            {
+                break;
+            }
+            a = tempStr.indexOf("(");
+            b = tempStr.indexOf(")");
+            proName = tempStr.mid(a+1, b-a-1);
+            proName.trimmed(); //删除两端的空格
+            proState = tempStr.section(" ", 2, 2);
+            proPri = tempStr.section(" ", 17, 17);
+            proMem = tempStr.section(" ", 22, 22);
+            if(proState!="S"&&proState!="R"){
+                continue;
+            }
+
+                QTreeWidgetItem *item=new QTreeWidgetItem(ui->listWidget_process);
+                item->setText(0,id_of_pro);
+                item->setText(1,proName);
+                item->setText(2,proState);
+                item->setText(3,proPri);
+                item->setText(4,proMem);
+                if(qs.indexOf("\n",b+1)==-1){
+                    break;
+                }
+
+        }
+        tempFile.close(); //关闭该PID进程的状态文件
+
+        if(curr!="\0")
+            ui->listWidget_process->setCurrentItem(ui->listWidget_process->findItems(curr,Qt::MatchExactly,0)[0]);//选中保存的item
     }
     else if(index==2)
     {
@@ -263,6 +400,15 @@ void Widget::back_message()
         ui->filesys_TreeWidgt->setCurrentItem(ui->filesys_TreeWidgt->findItems(curr,Qt::MatchExactly,0)[0]);//选中保存的item
 
 }
+void Widget::back_message1(){
+
+    while(Process1->canReadLine())//df的行
+    {
+        QString message(Process1->readLine());
+        ui->username_Label->setText(message);
+    }
+
+}
 
 
 
@@ -271,4 +417,17 @@ void Widget::on_filesys_TreeWidgt_itemDoubleClicked(QTreeWidgetItem *item, int c
     //双击filesys表项打开对应的磁盘
     QString open="/usr/bin/nautilus"+item->text(5);
     system(open.toUtf8());
+}
+
+
+void Widget::on_pkill_clicked()
+{
+    //获得进程号
+    QTreeWidgetItem *item = ui->listWidget_process->currentItem();
+    QString pro = item->text(0);
+    pro = pro.section("\t", 0, 0);
+    system("kill " + pro.toLatin1());
+    QMessageBox::warning(this, tr("kill"), QString::fromUtf8("该进程已被杀死!"), QMessageBox::Yes);
+    //回到进程信息tab表
+    show_tabWidgetInfo(1);
 }
